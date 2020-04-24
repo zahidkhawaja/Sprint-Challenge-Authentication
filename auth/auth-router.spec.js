@@ -27,4 +27,9 @@ describe("auth test suite", () => {
         return request(server).post("/api/auth/login").send({ "username": "whew", "password": "mah" })
         .then(res => expect(res.status).toBe(401));
     })
+
+    it("Should 400 bad request if not auth", () => {
+        return request(server).get("/api/jokes")
+        .then(res => expect(res.status).toBe(400));
+    })
 });
