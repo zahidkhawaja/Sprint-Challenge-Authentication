@@ -8,6 +8,11 @@ describe("auth test suite", () => {
         await db("users").truncate();
     });
 
+    it("/ should return 200", () => {
+        return request(server).get("/")
+        .then(res => expect(res.status).toBe(200))
+    })
+
     it("Register should return a 201 ok if username is available", () => {
         return request(server).post("/api/auth/register").send({ "username": "whew", "password": "meh" })
         .then(res => expect(res.status).toBe(201));
